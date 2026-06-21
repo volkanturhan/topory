@@ -1,13 +1,13 @@
-# Builds both shareable Topory packages and gathers them under dist/release:
+# Builds both shareable topory packages and gathers them under dist/release:
 #
-#   Topory.exe       self-contained (~68 MB) — runs without installing .NET
-#   Topory-lite.exe  framework-dependent (~0.4 MB) — needs the .NET 8 Desktop
+#   topory.exe       self-contained (~68 MB) — runs without installing .NET
+#   topory-lite.exe  framework-dependent (~0.4 MB) — needs the .NET 8 Desktop
 #                      Runtime (Windows prompts to install it on first run if it
 #                      is missing)
 $ErrorActionPreference = 'Stop'
 
 $root = Split-Path $PSScriptRoot -Parent
-$project = Join-Path $root 'Topory\Topory.csproj'
+$project = Join-Path $root 'topory\topory.csproj'
 $selfContainedDir = Join-Path $root 'dist\win-x64'
 $liteDir = Join-Path $root 'dist\win-x64-fxdep'
 $releaseDir = Join-Path $root 'dist\release'
@@ -26,8 +26,8 @@ dotnet publish $project -c Release -r win-x64 --self-contained false `
 
 # Collect both under dist/release with clear, distinct names for the upload.
 New-Item -ItemType Directory -Force -Path $releaseDir | Out-Null
-Copy-Item (Join-Path $selfContainedDir 'Topory.exe') (Join-Path $releaseDir 'Topory.exe') -Force
-Copy-Item (Join-Path $liteDir 'Topory.exe') (Join-Path $releaseDir 'Topory-lite.exe') -Force
+Copy-Item (Join-Path $selfContainedDir 'topory.exe') (Join-Path $releaseDir 'topory.exe') -Force
+Copy-Item (Join-Path $liteDir 'topory.exe') (Join-Path $releaseDir 'topory-lite.exe') -Force
 
 Write-Output ''
 Write-Output 'Release assets (dist/release):'

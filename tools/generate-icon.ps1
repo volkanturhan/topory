@@ -1,11 +1,11 @@
-# Generates Topory's application icon: a violet->indigo rounded square with a
+# Generates topory's application icon: a violet->indigo rounded square with a
 # white push-pin — the universal "keep this on top / pinned" mark.
 #
 # Frames are written as uncompressed 32-bit BMP (DIB) entries via GDI+ itself,
 # because System.Drawing.Icon / the WinForms NotifyIcon load BMP frames
 # reliably, whereas PNG-compressed frames can fail to decode.
 #
-# Run from anywhere; it writes ../Topory/Assets/Topory.ico.
+# Run from anywhere; it writes ../topory/Assets/topory.ico.
 Add-Type -AssemblyName System.Drawing
 
 function New-RoundedRect([single]$x, [single]$y, [single]$w, [single]$h, [single]$r) {
@@ -109,7 +109,7 @@ foreach ($single in $singles) {
 }
 $w.Flush()
 
-$target = Join-Path $PSScriptRoot '..\Topory\Assets\Topory.ico'
+$target = Join-Path $PSScriptRoot '..\topory\Assets\topory.ico'
 [System.IO.File]::WriteAllBytes($target, $out.ToArray())
 $w.Dispose()
 Write-Output "Wrote $((Resolve-Path $target).Path) ($((Get-Item $target).Length) bytes)"
