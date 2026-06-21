@@ -1,16 +1,16 @@
 using System.Windows;
-using Topory.Services;
+using topory.Services;
 
 // Enabling WinForms (for the tray icon) pulls the System.Windows.Forms version
 // of Application into scope too, so spell out the WPF one; also disambiguate from
 // System.Windows.Localization.
 using Application = System.Windows.Application;
-using Localization = Topory.Services.Localization;
+using Localization = topory.Services.Localization;
 
-namespace Topory;
+namespace topory;
 
 /// <summary>
-/// Application entry point. Runs Topory as a tray application: no window on
+/// Application entry point. Runs topory as a tray application: no window on
 /// startup, lives in the system tray, exits only on "Quit".
 ///
 /// The core flow: press Ctrl+Shift+T → the window you're using is pinned on top
@@ -28,9 +28,9 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        // Only one Topory should own the global hotkey at a time.
+        // Only one topory should own the global hotkey at a time.
         _singleInstanceMutex = new Mutex(initiallyOwned: true,
-            @"Local\Topory.SingleInstance", out var isFirstInstance);
+            @"Local\topory.SingleInstance", out var isFirstInstance);
         if (!isFirstInstance)
         {
             Shutdown();

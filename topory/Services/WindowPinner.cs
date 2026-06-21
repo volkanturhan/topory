@@ -1,9 +1,9 @@
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
 using System.Text;
-using Topory.Models;
+using topory.Models;
 
-namespace Topory.Services;
+namespace topory.Services;
 
 /// <summary>
 /// Pins and unpins other applications' windows so they stay above everything
@@ -98,7 +98,7 @@ public sealed class WindowPinner
         Changed?.Invoke();
     }
 
-    /// <summary>Unpins every window Topory has pinned.</summary>
+    /// <summary>Unpins every window topory has pinned.</summary>
     public void UnpinAll()
     {
         foreach (var window in _pinned.ToArray())

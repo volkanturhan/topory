@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Topory.Services;
+namespace topory.Services;
 
 public enum AppLanguage
 {
@@ -35,7 +35,7 @@ public sealed class Localization : INotifyPropertyChanged
         ["ThemeLight"] = "Light",
         ["TrayAbout"] = "About",
         ["TrayQuit"] = "Quit",
-        ["ManagerTitle"] = "Topory — Pinned windows",
+        ["ManagerTitle"] = "topory — Pinned windows",
         ["Empty"] = "No pinned windows — press Ctrl + Shift + T over any window to keep it on top",
         ["Unpin"] = "Unpin",
         ["UnpinAll"] = "Unpin all",
@@ -59,7 +59,7 @@ public sealed class Localization : INotifyPropertyChanged
         ["ThemeLight"] = "Açık",
         ["TrayAbout"] = "Hakkında",
         ["TrayQuit"] = "Çıkış",
-        ["ManagerTitle"] = "Topory — Sabitlenen pencereler",
+        ["ManagerTitle"] = "topory — Sabitlenen pencereler",
         ["Empty"] = "Sabitlenen pencere yok — üstte tutmak için bir pencerenin üzerindeyken Ctrl + Shift + T",
         ["Unpin"] = "Sabitlemeyi kaldır",
         ["UnpinAll"] = "Tümünü kaldır",

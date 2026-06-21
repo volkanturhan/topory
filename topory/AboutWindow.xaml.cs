@@ -2,12 +2,12 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Navigation;
-using Topory.Services;
+using topory.Services;
 
 // Disambiguate from System.Windows.Localization (pulled in via System.Windows).
-using Localization = Topory.Services.Localization;
+using Localization = topory.Services.Localization;
 
-namespace Topory;
+namespace topory;
 
 /// <summary>
 /// A small "About" dialog: icon, name, version, author, project and website

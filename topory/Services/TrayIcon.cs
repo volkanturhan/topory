@@ -1,15 +1,15 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace Topory.Services;
+namespace topory.Services;
 
 /// <summary>
-/// The system-tray presence for Topory. The context menu pins the current window
+/// The system-tray presence for topory. The context menu pins the current window
 /// on top, opens the list of pinned windows, and exposes the usual settings; the
 /// events below let the application decide what each one does.
 ///
 /// Menu text follows the app language. Backed by the WinForms
-/// <see cref="NotifyIcon"/>, which ships with the .NET SDK so Topory needs no
+/// <see cref="NotifyIcon"/>, which ships with the .NET SDK so topory needs no
 /// third-party tray library.
 /// </summary>
 public sealed class TrayIcon : IDisposable
@@ -72,7 +72,7 @@ public sealed class TrayIcon : IDisposable
         _notifyIcon = new NotifyIcon
         {
             Icon = _icon ?? SystemIcons.Application,
-            Text = "Topory",
+            Text = "topory",
             Visible = true,
             ContextMenuStrip = menu,
         };
@@ -104,7 +104,7 @@ public sealed class TrayIcon : IDisposable
     {
         try
         {
-            var uri = new Uri("pack://application:,,,/Assets/Topory.ico");
+            var uri = new Uri("pack://application:,,,/Assets/topory.ico");
             using var stream = System.Windows.Application.GetResourceStream(uri).Stream;
             return new Icon(stream, SystemInformation.SmallIconSize);
         }

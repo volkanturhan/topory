@@ -1,14 +1,14 @@
 using System.Windows;
-using Topory.Models;
-using Topory.Services;
+using topory.Models;
+using topory.Services;
 
 // Disambiguate from System.Windows.Localization (pulled in via System.Windows).
-using Localization = Topory.Services.Localization;
+using Localization = topory.Services.Localization;
 
-namespace Topory;
+namespace topory;
 
 /// <summary>
-/// Lists the windows Topory is keeping on top, with a button to unpin each (or
+/// Lists the windows topory is keeping on top, with a button to unpin each (or
 /// all), plus a menu mirroring the tray settings (language, theme, start with
 /// Windows, about). Pinning happens via the global hotkey; this window manages
 /// what's already pinned.

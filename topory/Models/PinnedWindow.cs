@@ -1,7 +1,7 @@
-namespace Topory.Models;
+namespace topory.Models;
 
 /// <summary>
-/// A window Topory has pinned on top: its handle plus a title to show in the
+/// A window topory has pinned on top: its handle plus a title to show in the
 /// manager list.
 /// </summary>
 public sealed class PinnedWindow

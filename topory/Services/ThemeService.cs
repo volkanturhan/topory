@@ -4,7 +4,7 @@ using Microsoft.Win32;
 // WinForms is enabled for the tray, so spell out the WPF Application.
 using Application = System.Windows.Application;
 
-namespace Topory.Services;
+namespace topory.Services;
 
 public enum AppTheme
 {
@@ -45,7 +45,7 @@ public static class ThemeService
         var name = dark ? "Dark" : "Light";
         var dictionary = new ResourceDictionary
         {
-            Source = new Uri($"/Topory;component/Themes/{name}.xaml", UriKind.Relative),
+            Source = new Uri($"/topory;component/Themes/{name}.xaml", UriKind.Relative),
         };
 
         var merged = Application.Current.Resources.MergedDictionaries;

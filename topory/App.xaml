@@ -1,7 +1,7 @@
-<Application x:Class="Topory.App"
+<Application x:Class="topory.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Topory">
+             xmlns:local="clr-namespace:topory">
     <Application.Resources>
 
     </Application.Resources>

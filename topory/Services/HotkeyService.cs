@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 
-namespace Topory.Services;
+namespace topory.Services;
 
 /// <summary>
 /// Registers a system-wide hotkey (Ctrl + Shift + T) and raises
