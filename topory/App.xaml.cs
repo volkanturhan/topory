@@ -1,10 +1,12 @@
 using System.Windows;
+using System.Windows.Threading;
 using topory.Services;
 
 // Enabling WinForms (for the tray icon) pulls the System.Windows.Forms version
 // of Application into scope too, so spell out the WPF one; also disambiguate from
 // System.Windows.Localization.
 using Application = System.Windows.Application;
+using MessageBox = System.Windows.MessageBox;
 using Localization = topory.Services.Localization;
 
 namespace topory;
@@ -25,6 +27,12 @@ public partial class App : Application
     private TrayIcon _tray = null!;
     private ManagerWindow? _managerWindow;
     private AboutWindow? _aboutWindow;
+
+    private UpdateService _updates = null!;
+    // Periodically re-checks for updates so a long-running instance still notices.
+    private DispatcherTimer? _updateTimer;
+    // The newer release found by the background check, awaiting the user's nod.
+    private UpdateService.AvailableUpdate? _pendingUpdate;
 
     protected override void OnStartup(StartupEventArgs e)
     {
@@ -57,10 +65,57 @@ public partial class App : Application
         _tray.PinRequested += TogglePin;
         _tray.ManageRequested += ShowManager;
         _tray.AboutRequested += ShowAbout;
+        _tray.UpdateRequested += InstallPendingUpdate;
+        _tray.CheckUpdateRequested += () => _ = CheckForUpdateAsync(announceWhenCurrent: true);
         _tray.QuitRequested += Shutdown;
 
         if (e.Args.Contains("--manage") || e.Args.Contains("--open"))
             ShowManager();
+
+        // Quietly ask GitHub whether a newer topory exists; if so the tray will
+        // offer it. Fire-and-forget so a slow network never delays startup.
+        _updates = new UpdateService();
+        _ = CheckForUpdateAsync(announceWhenCurrent: false);
+
+        // Re-check every few hours so an instance left running for days still
+        // notices a new release without needing a restart.
+        _updateTimer = new DispatcherTimer { Interval = TimeSpan.FromHours(6) };
+        _updateTimer.Tick += (_, _) => _ = CheckForUpdateAsync(announceWhenCurrent: false);
+        _updateTimer.Start();
+    }
+
+    /// <summary>
+    /// Background check for a newer release. The await resumes on the UI thread,
+    /// so touching the tray here is safe. Silent on failure by design.
+    /// </summary>
+    private async Task CheckForUpdateAsync(bool announceWhenCurrent)
+    {
+        _pendingUpdate = await _updates.CheckForUpdateAsync();
+        if (_pendingUpdate is not null)
+            _tray.ShowUpdateAvailable(_pendingUpdate.Version.ToString(3));
+        else if (announceWhenCurrent)
+            _tray.ShowUpToDate();   // give feedback only for a manual check
+    }
+
+    /// <summary>
+    /// Downloads and launches the installer for the pending update, then quits so
+    /// it can replace topory's files. Tells the user if the download fails.
+    /// </summary>
+    private async void InstallPendingUpdate()
+    {
+        if (_pendingUpdate is null)
+            return;
+
+        try
+        {
+            await _updates.DownloadAndLaunchInstallerAsync(_pendingUpdate);
+            Shutdown();
+        }
+        catch
+        {
+            MessageBox.Show(Localization.Instance["UpdateFailed"], "topory",
+                MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
     }
 
     private void TogglePin()
@@ -117,6 +172,7 @@ public partial class App : Application
     {
         // Restore every pinned window so nothing is left stuck on top after we go.
         _pinner?.UnpinAll();
+        _updateTimer?.Stop();
         _tray?.Dispose();
         _hotkey?.Dispose();
         _singleInstanceMutex?.Dispose();
