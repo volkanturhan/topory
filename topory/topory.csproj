@@ -26,7 +26,7 @@
     <AssemblyTitle>topory</AssemblyTitle>
     <Description>A lightweight Windows "always on top" manager.</Description>
     <Authors>Volkan Turhan</Authors>
-    <Version>0.1.0</Version>
+    <Version>1.0.0</Version>
     <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
