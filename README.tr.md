@@ -24,13 +24,25 @@ sabitleme kalksın. Küçük bir pencere sabitlediklerini listeler, tek tek bır
 - **Koyu ya da açık** — menüden **Sistem**, **Koyu** ya da **Açık** temasını seç.
   Varsayılan **Sistem**, yani Windows ayarını takip eder.
 - **Windows ile başla** — isteğe bağlı, menüden aç/kapa.
+- **Kendini günceller** — yeni sürüm çıktığında topory'i tepsiden önerir; tek tıkla kurulur.
 - **İngilizce & Türkçe** — arayüz dilini menüden değiştir.
 - **Tasarımı gereği gizli** — her şey senin makinende kalır, hiçbir şey yüklenmez.
 
-## Çalıştır
+## İndir
 
-topory henüz hazır bir indirme olarak yayınlanmadı, bu yüzden şimdilik kaynaktan
-çalıştırıyorsun. Windows'ta [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+En güncel sürümü [**Releases**](https://github.com/volkanturhan/topory/releases/latest) sayfasından indir:
+
+- **topory-setup-…exe** — kurulum (önerilen). Yönetici izni gerekmez ve topory bundan sonra kendini güncel tutar.
+- **topory-…exe** — taşınabilir tek dosya; çalıştır yeter, kurulum yok.
+
+İkisi de self-contained, yani .NET kurulu olması gerekmez. Windows 10/11, 64-bit.
+
+topory sessizce sistem tepsisinde başlar — **hiçbir pencere açılmaz**. Bu
+normaldir; kısayolu kullan ya da sabitlediklerini görmek için tepsi ikonuna çift tıkla.
+
+## Kaynaktan çalıştır
+
+Kendin derlemeyi mi tercih edersin? Windows'ta [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 (sadece runtime değil, SDK) kurulu olmalı.
 
 ```bash
@@ -38,9 +50,6 @@ git clone https://github.com/volkanturhan/topory.git
 cd topory
 dotnet run --project topory/topory.csproj
 ```
-
-topory sessizce sistem tepsisinde başlar — **hiçbir pencere açılmaz**. Bu
-normaldir; kısayolu kullan ya da sabitlediklerini görmek için tepsi ikonuna çift tıkla.
 
 ## Nasıl kullanılır
 
@@ -56,12 +65,12 @@ Tepsi ikonuna sağ tık: **Geçerli pencereyi sabitle**, **Sabitlenen pencereler
 
 ## Paylaşılabilir exe oluştur
 
-SDK olmadan birine verebileceğin bağımsız bir `.exe` mi istiyorsun? Kendin
-derle — çıktı repoya dahil edilmez:
+SDK olmadan birine verebileceğin bağımsız bir `.exe` ve kurulum dosyası mı
+istiyorsun? Kendin derle — çıktı repoya dahil edilmez:
 
 ```bash
-# dist/ içine derler (self-contained topory.exe + lite sürüm)
-pwsh tools/publish.ps1
+# dist/release içine derler (taşınabilir topory.exe + Windows kurulumu)
+pwsh tools/release.ps1
 ```
 
 ## Teknoloji

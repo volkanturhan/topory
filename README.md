@@ -23,13 +23,25 @@ small window lists everything you've pinned so you can release them one by one.
 - **Dark or light** — pick a **System**, **Dark**, or **Light** theme from the
   menu. Defaults to **System**, following your Windows setting.
 - **Start with Windows** — optional, toggled from the menu.
+- **Self-updating** — when a new version ships, topory offers it from the tray; one click installs it.
 - **English & Turkish** — switch the interface language from the menu.
 - **Private by design** — everything stays on your machine; nothing is uploaded.
 
-## Run it
+## Download
 
-topory isn't published as a prebuilt download yet, so for now you run it from
-source. You'll need the [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+Grab the latest build from the [**Releases**](https://github.com/volkanturhan/topory/releases/latest) page:
+
+- **topory-setup-…exe** — installer (recommended). No admin rights needed, and topory keeps itself up to date from here on.
+- **topory-…exe** — portable single file; just run it, nothing to install.
+
+Both are self-contained, so you don't need .NET installed. Windows 10/11, 64-bit.
+
+topory starts quietly in the system tray — **no window pops up**. That's normal;
+use the hotkey, or double-click the tray icon to see your pinned windows.
+
+## Run from source
+
+Prefer to build it yourself? You'll need the [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 (the SDK, not just the runtime) on Windows.
 
 ```bash
@@ -37,9 +49,6 @@ git clone https://github.com/volkanturhan/topory.git
 cd topory
 dotnet run --project topory/topory.csproj
 ```
-
-topory starts quietly in the system tray — **no window pops up**. That's normal;
-use the hotkey, or double-click the tray icon to see your pinned windows.
 
 ## How to use
 
@@ -55,12 +64,12 @@ with Windows**, language, and **Quit**. Quitting releases every pinned window.
 
 ## Build a shareable exe
 
-Want a standalone `.exe` you can hand to someone without the SDK? Build it
-yourself — the output isn't checked into the repo:
+Want a standalone `.exe` and installer you can hand to someone without the SDK?
+Build them yourself — the output isn't checked into the repo:
 
 ```bash
-# Builds into dist/ (self-contained topory.exe + lite build)
-pwsh tools/publish.ps1
+# Builds into dist/release (portable topory.exe + Windows installer)
+pwsh tools/release.ps1
 ```
 
 ## Tech
