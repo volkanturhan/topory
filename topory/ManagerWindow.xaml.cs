@@ -1,4 +1,5 @@
 using System.Windows;
+using System.Windows.Input;
 using topory.Models;
 using topory.Services;
 
@@ -33,6 +34,16 @@ public partial class ManagerWindow : Window
         // Drop windows that have since closed whenever the user returns here.
         Activated += (_, _) => _pinner.Prune();
     }
+
+    // The window is borderless (no native title bar), so dragging the custom
+    // title bar moves it, and the custom close button hides it to the tray.
+    private void OnHeaderDrag(object sender, MouseButtonEventArgs e)
+    {
+        if (e.ChangedButton == MouseButton.Left)
+            DragMove();
+    }
+
+    private void OnCloseClick(object sender, RoutedEventArgs e) => Hide();
 
     private void OnPin(object sender, RoutedEventArgs e) => PinRequested?.Invoke();
 
