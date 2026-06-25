@@ -138,7 +138,6 @@ public partial class App : Application
         {
             _managerWindow = new ManagerWindow(_pinner);
             _managerWindow.PinRequested += TogglePin;
-            _managerWindow.AboutRequested += ShowAbout;
             _managerWindow.Closed += (_, _) => _managerWindow = null;
         }
 
