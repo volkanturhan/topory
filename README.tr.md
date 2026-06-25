@@ -10,7 +10,8 @@ referansı ya da hesap makinesini görünür tutmak için birebir. Tekrar bas,
 sabitleme kalksın. Küçük bir pencere sabitlediklerini listeler, tek tek bırakabilirsin.
 
 <p align="center">
-  <img src="docs/screenshot.png" alt="topory sabitlenen pencereler yöneticisi" width="520" />
+  <img src="docs/screenshot-dark.png" alt="topory sabitlenen pencereler yöneticisi (dark)" width="400" />
+  <img src="docs/screenshot-light.png" alt="topory sabitlenen pencereler yöneticisi (light)" width="400" />
 </p>
 
 ## Özellikler

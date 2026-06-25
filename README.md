@@ -10,7 +10,8 @@ reference, or a calculator visible while you work. Press it again to unpin. A
 small window lists everything you've pinned so you can release them one by one.
 
 <p align="center">
-  <img src="docs/screenshot.png" alt="topory's pinned-windows manager" width="520" />
+  <img src="docs/screenshot-dark.png" alt="topory's pinned-windows manager (dark)" width="400" />
+  <img src="docs/screenshot-light.png" alt="topory's pinned-windows manager (light)" width="400" />
 </p>
 
 ## Features
